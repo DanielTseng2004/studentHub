@@ -16,12 +16,11 @@ function App() {
   const [Email, setemail] = useState("")
   const [findid, setfindid] = useState("")
   const [newName, setnewName] = useState("")
-  
   const [searchId, setSearchId] = useState("")
   const [searchedStudent, setSearchedStudent] = useState<Student | null>(null)
 
   const apiEndpoint = `${api.delete}?id=${id}`
-  
+
   async function handle() {
     try {
       const response = await asyncDelete(apiEndpoint)
@@ -142,10 +141,10 @@ function App() {
       <div className="input-section">
         <div className="input-wrapper">
           <label>Search Student by ID</label>
-          <input 
-            type="text" 
-            value={searchId} 
-            onChange={(e) => setSearchId(e.target.value)} 
+          <input
+            type="text"
+            value={searchId}
+            onChange={(e) => setSearchId(e.target.value)}
             placeholder="Enter student ID to search"
           />
           <button onClick={searchStudent}>Search</button>
@@ -174,10 +173,10 @@ function App() {
       <div className="input-section">
         <div className="input-wrapper">
           <label>Delete by ID</label>
-          <input 
-            type="text" 
-            value={id} 
-            onChange={(e) => setid(e.target.value)} 
+          <input
+            type="text"
+            value={id}
+            onChange={(e) => setid(e.target.value)}
             placeholder="Enter ID to delete"
           />
           <button onClick={handle}>Delete</button>
@@ -187,55 +186,55 @@ function App() {
       <div className="input-section">
         <div className="input-wrapper">
           <label>Account</label>
-          <input 
-            type="text" 
-            value={account} 
-            onChange={(e) => setaccount(e.target.value)} 
+          <input
+            type="text"
+            value={account}
+            onChange={(e) => setaccount(e.target.value)}
             placeholder="Enter account"
           />
         </div>
         <div className="input-wrapper">
           <label>Name</label>
-          <input 
-            type="text" 
-            value={name} 
-            onChange={(e) => setname(e.target.value)} 
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setname(e.target.value)}
             placeholder="Enter name"
           />
         </div>
         <div className="input-wrapper">
           <label>Department</label>
-          <input 
-            type="text" 
-            value={department} 
-            onChange={(e) => setdepartment(e.target.value)} 
+          <input
+            type="text"
+            value={department}
+            onChange={(e) => setdepartment(e.target.value)}
             placeholder="Enter department"
           />
         </div>
         <div className="input-wrapper">
           <label>Grade</label>
-          <input 
-            type="text" 
-            value={grade} 
-            onChange={(e) => setgrade(e.target.value)} 
+          <input
+            type="text"
+            value={grade}
+            onChange={(e) => setgrade(e.target.value)}
             placeholder="Enter grade"
           />
         </div>
         <div className="input-wrapper">
           <label>Class</label>
-          <input 
-            type="text" 
-            value={Class} 
-            onChange={(e) => setclass(e.target.value)} 
+          <input
+            type="text"
+            value={Class}
+            onChange={(e) => setclass(e.target.value)}
             placeholder="Enter class"
           />
         </div>
         <div className="input-wrapper">
           <label>Email</label>
-          <input 
-            type="text" 
-            value={Email} 
-            onChange={(e) => setemail(e.target.value)} 
+          <input
+            type="text"
+            value={Email}
+            onChange={(e) => setemail(e.target.value)}
             placeholder="Enter email"
           />
         </div>
@@ -248,19 +247,19 @@ function App() {
       <div className="input-section">
         <div className="input-wrapper">
           <label>Find ID</label>
-          <input 
-            type="text" 
-            value={findid} 
-            onChange={(e) => setfindid(e.target.value)} 
+          <input
+            type="text"
+            value={findid}
+            onChange={(e) => setfindid(e.target.value)}
             placeholder="Enter ID to update"
           />
         </div>
         <div className="input-wrapper">
           <label>New Name</label>
-          <input 
-            type="text" 
-            value={newName} 
-            onChange={(e) => setnewName(e.target.value)} 
+          <input
+            type="text"
+            value={newName}
+            onChange={(e) => setnewName(e.target.value)}
             placeholder="Enter new name"
           />
         </div>
