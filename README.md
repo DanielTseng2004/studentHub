@@ -80,7 +80,7 @@ npm run dev
                     "grade": "四年級",
                     "class": "B",
                     "email": "tkume2253@tkuim.com"
-                },"...共N筆資料
+                },{"...共N筆資料"}
         }
         
         ```
