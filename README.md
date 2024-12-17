@@ -65,7 +65,7 @@ npm run dev
 ## 1.查詢所有學生資料
 + **請求**
     + `GET /api/v1/user/findAll`
-+ ###### 回應
++ **回應**
     + ```json 
         "code": 200,
         "message": "find sucess",
@@ -79,7 +79,10 @@ npm run dev
                 "grade": "四年級",
                 "class": "B",
                 "email": "tkume2253@tkuim.com"
-            },...
+            },  .
+                .
+                .
+
         ```
 
 
