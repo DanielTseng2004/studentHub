@@ -87,12 +87,12 @@ npm run dev
 
 ## 2.根據 ID 查詢學生資料
 + **請求**
-    + `GET /api/v1/user/findAll` 
+    + `GET /api/v1/user/findAll?id={request}`   #request值為搜尋目標的id
 + **回應**
     + ```json 
         {
             "code": 200,
-            "message": "find sucess",
+            "message": "",
             "body":
                 {
                     "_id": "67592089d431b1143e5bc7fb",
@@ -107,6 +107,133 @@ npm run dev
         }
 
         ```
+    + 404
+        ```json
+        {
+            "code": 404,
+            "message": "找不到該學生"
+        }
+        ```
+    + 500 
+        ```json
+        {
+            "code": 500,
+            "message": "查詢出錯"
+        }
+        ```
 ## 3.新增學生資料
++ **請求**
+    + `GET /api/v1/user/insertOne` 
++ **回應**
+    + ```json 
+        {
+            "code": 200,
+            "message": "新增成功",
+            "body":
+                {
+                    "_id": "67592089d431b1143e5bc7fb",
+                    "userName": "tkume2253",
+                    "sid": "4",
+                    "name": "好難喔",
+                    "department": "機械工程系",
+                    "grade": "四年級",
+                    "class": "B",
+                    "email": "tkume2253@tkuim.com"
+                },
+        }
+
+        ```
+    + 404
+        ```json
+        {
+            "code": 403,
+            "message": "重複的使用者帳號"
+        }
+        ```
+    + 500 
+        ```json
+        {
+            "code": 500,
+            "message": "伺服器錯誤"
+        }
+        ```
+
 ## 4.根據 ID 刪除學生資料
++ **請求**
+    + `GET /api/v1/user/deletedById` 
++ **回應**
+    + ```json 
+        {
+            "code": 200,
+            "message": "刪除成功",
+            "body":
+                {
+                    "_id": "67592089d431b1143e5bc7fb",
+                    "userName": "tkume2253",
+                    "sid": "4",
+                    "name": "好難喔",
+                    "department": "機械工程系",
+                    "grade": "四年級",
+                    "class": "B",
+                    "email": "tkume2253@tkuim.com"
+                },
+        }
+
+        ```
+    + 404
+        ```json
+        {
+            "code": 404,
+            "message": "找不到使用者"
+        }
+        ```
+    + 500 
+        ```json
+        {
+            "code": 500,
+            "message": "伺服器錯誤"
+        }
+        ```
+
 ## 5.根據 ID 更新學生資料
++ **請求**
+    + `GET /api/v1/user/updateNameById` 
++ **回應**
++ ```json 
+        {
+            "code": 200,
+            "message": "更新成功",
+            "body":
+                {
+                    "_id": "67592089d431b1143e5bc7fb",
+                    "userName": "tkume2253",
+                    "sid": "4",
+                    "name": "好難喔",
+                    "department": "機械工程系",
+                    "grade": "四年級",
+                    "class": "B",
+                    "email": "tkume2253@tkuim.com"
+                },
+        }
+
+        ```
+    + 404
+        ```json
+        {
+            "code": 404,
+            "message": "找不到使用者"
+        }
+        ```
+    + 500 
+        ```json
+        {
+            "code": 500,
+            "message": "伺服器錯誤"
+        }
+        ```
+
+# 架構圖
+
+
+# 流程圖
+

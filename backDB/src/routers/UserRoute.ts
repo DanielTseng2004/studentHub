@@ -40,9 +40,7 @@ export class UserRoute extends Route{
         this.router.put(`${this.url}updateNameById`,(req, res)=>{
             this.Contorller.updateNameById(req, res);
         })
-        this.router.get(`${this.url}findById`,(req, res)=>{
-            this.Contorller.findById(req, res);
-        })
+        
     }
 
 }

@@ -21,7 +21,7 @@ function App() {
 
   const apiEndpoint = `${api.delete}?id=${id}`
 
-  async function handle() {
+  async function handledelete() {
     try {
       const response = await asyncDelete(apiEndpoint)
       if (response.code == 200) {
@@ -179,7 +179,7 @@ function App() {
             onChange={(e) => setid(e.target.value)}
             placeholder="Enter ID to delete"
           />
-          <button onClick={handle}>Delete</button>
+          <button onClick={handledelete}>Delete</button>
         </div>
       </div>
 
