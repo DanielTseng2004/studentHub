@@ -67,21 +67,21 @@ npm run dev
     + `GET /api/v1/user/findAll`
 + **回應**
     + ```json 
-        "code": 200,
-        "message": "find sucess",
-        "body":
-            {
-                "_id": "67592089d431b1143e5bc7fb",
-                "userName": "tkume2253",
-                "sid": "4",
-                "name": "好難喔",
-                "department": "機械工程系",
-                "grade": "四年級",
-                "class": "B",
-                "email": "tkume2253@tkuim.com"
-            },  .
-                .
-                .
+        {
+            "code": 200,
+            "message": "find sucess",
+            "body":
+                {
+                    "_id": "67592089d431b1143e5bc7fb",
+                    "userName": "tkume2253",
+                    "sid": "4",
+                    "name": "好難喔",
+                    "department": "機械工程系",
+                    "grade": "四年級",
+                    "class": "B",
+                    "email": "tkume2253@tkuim.com"
+                },
+        }
 
         ```
 
