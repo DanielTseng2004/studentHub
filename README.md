@@ -2,7 +2,7 @@
 
 ## 1.下載專案
 clone專案並導至專案位置
-```
+```bash
 git clone https://github.com/DanielTseng2004/studentHub.git
 cd yourpath/studentHub
 ```
@@ -85,8 +85,28 @@ npm run dev
 
         ```
 
-
 ## 2.根據 ID 查詢學生資料
++ **請求**
+    + `GET /api/v1/user/findAll` 
++ **回應**
+    + ```json 
+        {
+            "code": 200,
+            "message": "find sucess",
+            "body":
+                {
+                    "_id": "67592089d431b1143e5bc7fb",
+                    "userName": "tkume2253",
+                    "sid": "4",
+                    "name": "好難喔",
+                    "department": "機械工程系",
+                    "grade": "四年級",
+                    "class": "B",
+                    "email": "tkume2253@tkuim.com"
+                },
+        }
+
+        ```
 ## 3.新增學生資料
 ## 4.根據 ID 刪除學生資料
 ## 5.根據 ID 更新學生資料
