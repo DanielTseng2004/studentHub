@@ -80,9 +80,9 @@ npm run dev
                     "grade": "四年級",
                     "class": "B",
                     "email": "tkume2253@tkuim.com"
-                },
+                },"...共N筆資料
         }
-        ...
+        
         ```
 
 ## 2.根據 ID 查詢學生資料
