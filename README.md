@@ -82,7 +82,7 @@ npm run dev
                     "email": "tkume2253@tkuim.com"
                 },
         }
-
+        ...
         ```
 
 ## 2.根據 ID 查詢學生資料
