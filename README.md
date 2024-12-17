@@ -8,13 +8,13 @@ cd yourpath/studentHub
 ```
 ## 2.安裝及執行前端
 進到前端目錄後，安裝所需套件
-```
+```bash
 cd front
 npm i
 ```
 
 執行前端
-```
+```bash
 npm run dev
 ```
 
@@ -26,7 +26,8 @@ npm i
 ```
 
 將 .env.example 文件重命名為 .env並修改為你的設定
-```
+
+```env
 DBUSER = user             # 資料庫使用者
 DBPASSWORD=password       # 資料庫密碼
 DBHOST=127.0.0.1          # 資料庫連線位置
@@ -40,14 +41,14 @@ privateKey=key
 ```
 
 執行後端伺服器
-```
+```bash
 npm run dev
 ```
 
 ## 4.資料庫連接
 先安裝MongoDB並啟動，建立`students` collection 並匯入範例數據`studentslist.csv`
 
-格式如下:
+範例格式如下:
 ```json
 {
     "userName":"tkume2253",
