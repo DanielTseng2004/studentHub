@@ -18,6 +18,7 @@ function App() {
   const [newName, setnewName] = useState("")
   const [searchId, setSearchId] = useState("")
   const [searchedStudent, setSearchedStudent] = useState<Student | null>(null)
+  const [activeTab, setActiveTab] = useState<'列表' | '搜索' | '删除' | '新增' | '更新'>('列表')
 
   const apiEndpoint = `${api.delete}?id=${id}`
 
@@ -25,12 +26,12 @@ function App() {
     try {
       const response = await asyncDelete(apiEndpoint)
       if (response.code == 200) {
-        alert("刪除成功")
+        alert("删除成功")
         fetchStudents()
       } else if (response.code == 404) {
-        alert("找不到使用者")
+        alert("找不到用户")
       } else {
-        alert("伺服器錯誤")
+        alert("服务器错误")
       }
     }
     catch (error) {
@@ -52,9 +53,9 @@ function App() {
         alert("新增成功")
         fetchStudents()
       } else if (response.code == 403) {
-        alert("重複的使用者帳號")
+        alert("重复的用户账号")
       } else {
-        alert("伺服器錯誤")
+        alert("服务器错误")
       }
     }
     catch (error) {
@@ -70,9 +71,9 @@ function App() {
         alert("更新成功")
         fetchStudents()
       } else if (response.code == 404) {
-        alert("找不到使用者")
+        alert("找不到用户")
       } else {
-        alert("伺服器錯誤")
+        alert("服务器错误")
       }
     }
     catch (error) {
@@ -86,13 +87,13 @@ function App() {
       if (response.code == 200 && response.body) {
         setSearchedStudent(response.body)
       } else {
-        alert("找不到該學生")
+        alert("找不到该学生")
         setSearchedStudent(null)
       }
     }
     catch (error) {
       console.log(error)
-      alert("查詢出錯")
+      alert("查询出错")
     }
   }
 
@@ -116,160 +117,219 @@ function App() {
   const studentList = students ? students.map((student: Student) => {
     return (
       <div className='student' key={student._id}>
-        <p>id: {student._id}</p>
-        <p>帳號: {student.userName}</p>
-        <p>座號: {student.sid}</p>
+        <p>ID: {student._id}</p>
+        <p>帐号: {student.userName}</p>
+        <p>座号: {student.sid}</p>
         <p>姓名: {student.name}</p>
         <p>院系: {student.department}</p>
-        <p>年級: {student.grade}</p>
-        <p>班級: {student.class}</p>
+        <p>年级: {student.grade}</p>
+        <p>班级: {student.class}</p>
         <p>Email: {student.email}</p>
-        <p>缺席次數: {student.absences ? student.absences : 0}</p>
+        <p>缺席次数: {student.absences ? student.absences : 0}</p>
       </div>
     )
-  }) : "loading"
+  }) : "加载中..."
 
   return (
-    <>
-      <div className='block'>
-        <h1>Student List</h1>
-        <div className="container">
-          {studentList}
-        </div>
+    <div className="app-container">
+      <h1>StudentHub</h1>
+      <div className="tab-navigation">
+        <button 
+          className={`tab-btn ${activeTab === '列表' ? 'active' : ''}`} 
+          onClick={() => setActiveTab('列表')}
+        >
+          学生列表
+        </button>
+        <button 
+          className={`tab-btn ${activeTab === '搜索' ? 'active' : ''}`} 
+          onClick={() => setActiveTab('搜索')}
+        >
+          搜索学生
+        </button>
+        <button 
+          className={`tab-btn ${activeTab === '删除' ? 'active' : ''}`} 
+          onClick={() => setActiveTab('删除')}
+        >
+          删除学生
+        </button>
+        <button 
+          className={`tab-btn ${activeTab === '新增' ? 'active' : ''}`} 
+          onClick={() => setActiveTab('新增')}
+        >
+          新增学生
+        </button>
+        <button 
+          className={`tab-btn ${activeTab === '更新' ? 'active' : ''}`} 
+          onClick={() => setActiveTab('更新')}
+        >
+          更新学生
+        </button>
       </div>
 
-      <div className="input-section">
-        <div className="input-wrapper">
-          <label>Search Student by ID</label>
-          <input
-            type="text"
-            value={searchId}
-            onChange={(e) => setSearchId(e.target.value)}
-            placeholder="Enter student ID to search"
-          />
-          <button onClick={searchStudent}>Search</button>
-        </div>
-      </div>
-
-      {searchedStudent && (
-        <div className='block'>
-          <h2>Search Result</h2>
-          <div className="container">
-            <div className='student'>
-              <p>id: {searchedStudent._id}</p>
-              <p>帳號: {searchedStudent.userName}</p>
-              <p>座號: {searchedStudent.sid}</p>
-              <p>姓名: {searchedStudent.name}</p>
-              <p>院系: {searchedStudent.department}</p>
-              <p>年級: {searchedStudent.grade}</p>
-              <p>班級: {searchedStudent.class}</p>
-              <p>Email: {searchedStudent.email}</p>
-              <p>缺席次數: {searchedStudent.absences ? searchedStudent.absences : 0}</p>
+      <div className="tab-content">
+        {activeTab === '列表' && (
+          <div className='block'>
+            <div className="container">
+              {studentList}
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <div className="input-section">
-        <div className="input-wrapper">
-          <label>Delete by ID</label>
-          <input
-            type="text"
-            value={id}
-            onChange={(e) => setid(e.target.value)}
-            placeholder="Enter ID to delete"
-          />
-          <button onClick={handledelete}>Delete</button>
-        </div>
-      </div>
+        {activeTab === '搜索' && (
+          <div className="input-section">
+            <div className="input-wrapper">
+              <label>按ID搜索学生</label>
+              <input
+                type="text"
+                value={searchId}
+                onChange={(e) => setSearchId(e.target.value)}
+                placeholder="输入学生ID"
+              />
+              <button onClick={searchStudent}>搜索</button>
+            </div>
 
-      <div className="input-section">
-        <div className="input-wrapper">
-          <label>Account</label>
-          <input
-            type="text"
-            value={account}
-            onChange={(e) => setaccount(e.target.value)}
-            placeholder="Enter account"
-          />
-        </div>
-        <div className="input-wrapper">
-          <label>Name</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setname(e.target.value)}
-            placeholder="Enter name"
-          />
-        </div>
-        <div className="input-wrapper">
-          <label>Department</label>
-          <input
-            type="text"
-            value={department}
-            onChange={(e) => setdepartment(e.target.value)}
-            placeholder="Enter department"
-          />
-        </div>
-        <div className="input-wrapper">
-          <label>Grade</label>
-          <input
-            type="text"
-            value={grade}
-            onChange={(e) => setgrade(e.target.value)}
-            placeholder="Enter grade"
-          />
-        </div>
-        <div className="input-wrapper">
-          <label>Class</label>
-          <input
-            type="text"
-            value={Class}
-            onChange={(e) => setclass(e.target.value)}
-            placeholder="Enter class"
-          />
-        </div>
-        <div className="input-wrapper">
-          <label>Email</label>
-          <input
-            type="text"
-            value={Email}
-            onChange={(e) => setemail(e.target.value)}
-            placeholder="Enter email"
-          />
-        </div>
-        <div className="input-wrapper">
-          <label>Insert Student</label>
-          <button onClick={insert}>Insert</button>
-        </div>
-      </div>
+            {searchedStudent && (
+              <div className='block'>
+                <div className="container">
+                  <div className='student'>
+                    <p>ID: {searchedStudent._id}</p>
+                    <p>帐号: {searchedStudent.userName}</p>
+                    <p>座号: {searchedStudent.sid}</p>
+                    <p>姓名: {searchedStudent.name}</p>
+                    <p>院系: {searchedStudent.department}</p>
+                    <p>年级: {searchedStudent.grade}</p>
+                    <p>班级: {searchedStudent.class}</p>
+                    <p>Email: {searchedStudent.email}</p>
+                    <p>缺席次数: {searchedStudent.absences ? searchedStudent.absences : 0}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
-      <div className="input-section">
-        <div className="input-wrapper">
-          <label>Find ID</label>
-          <input
-            type="text"
-            value={findid}
-            onChange={(e) => setfindid(e.target.value)}
-            placeholder="Enter ID to update"
-          />
-        </div>
-        <div className="input-wrapper">
-          <label>New Name</label>
-          <input
-            type="text"
-            value={newName}
-            onChange={(e) => setnewName(e.target.value)}
-            placeholder="Enter new name"
-          />
-        </div>
-        <div className="input-wrapper">
-          <label>Update Student</label>
-          <button onClick={update}>Update</button>
-        </div>
+        {activeTab === '删除' && (
+          <div className="input-section">
+            <div className="input-wrapper">
+              <label>按ID删除学生</label>
+              <input
+                type="text"
+                value={id}
+                onChange={(e) => setid(e.target.value)}
+                placeholder="输入学生ID"
+              />
+              <button onClick={handledelete}>删除</button>
+            </div>
+          </div>
+        )}
+
+        {activeTab === '新增' && (
+          <div className="input-section">
+            
+            <div className="input-wrapper"></div>
+            <div className="input-wrapper">
+              <label>帐号</label>
+              <input
+                type="text"
+                value={account}
+                onChange={(e) => setaccount(e.target.value)}
+                placeholder="输入帐号"
+              />
+            </div>
+            <div className="input-wrapper"></div>
+            <div className="input-wrapper"></div>
+            <div className="input-wrapper">
+              <label>姓名</label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setname(e.target.value)}
+                placeholder="输入姓名"
+              />
+            </div>
+            <div className="input-wrapper"></div>
+            <div className="input-wrapper"></div>
+            <div className="input-wrapper">
+              <label>院系</label>
+              <input
+                type="text"
+                value={department}
+                onChange={(e) => setdepartment(e.target.value)}
+                placeholder="输入院系"
+              />
+            </div>
+            <div className="input-wrapper"></div>
+            <div className="input-wrapper"></div> 
+            <div className="input-wrapper">
+              <label>年级</label>
+              <input
+                type="text"
+                value={grade}
+                onChange={(e) => setgrade(e.target.value)}
+                placeholder="输入年级"
+              />
+            </div>
+            <div className="input-wrapper"></div>
+            <div className="input-wrapper"></div>
+            <div className="input-wrapper">
+              <label>班级</label>
+              <input
+                type="text"
+                value={Class}
+                onChange={(e) => setclass(e.target.value)}
+                placeholder="输入班级"
+              />
+            </div>
+            <div className="input-wrapper"></div>
+            <div className="input-wrapper"></div>
+            <div className="input-wrapper">
+              <label>Email</label>
+              <input
+                type="text"
+                value={Email}
+                onChange={(e) => setemail(e.target.value)}
+                placeholder="输入Email"
+              />
+            </div>
+            <div className="input-wrapper"></div>
+            <div className="input-wrapper">
+              <button onClick={insert}>新增</button>
+            </div>
+          </div>
+        )}
+
+        {activeTab === '更新' && (
+          <div className="input-section">
+            <div className="input-wrapper"></div>
+            <div className="input-wrapper">
+              <label>查找ID</label>
+              <input
+                type="text"
+                value={findid}
+                onChange={(e) => setfindid(e.target.value)}
+                placeholder="输入要更新的ID"
+              />
+            </div>
+            <div className="input-wrapper"></div>
+            <div className="input-wrapper"></div>
+            <div className="input-wrapper">
+              <label>新姓名</label>
+              <input
+                type="text"
+                value={newName}
+                onChange={(e) => setnewName(e.target.value)}
+                placeholder="输入新姓名"
+              />
+            </div>
+            <div className="input-wrapper"></div>
+            <div className="input-wrapper">
+              <button onClick={update}>更新</button>
+            </div>
+          </div>
+        )}
       </div>
-    </>
+    </div>
   )
 }
 
-export default App;
+export default App
