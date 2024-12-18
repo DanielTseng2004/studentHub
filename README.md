@@ -89,7 +89,8 @@ npm run dev
 + **請求**
     + `GET /api/v1/user/findAll?id={request}`   #request值為搜尋目標的id
 + **回應**
-    + ```json 
+    + 200
+        ```json 
         {
             "code": 200,
             "message": "",
@@ -125,7 +126,8 @@ npm run dev
 + **請求**
     + `GET /api/v1/user/insertOne` 
 + **回應**
-    + ```json 
+    + 200
+        ```json 
         {
             "code": 200,
             "message": "新增成功",
@@ -162,7 +164,8 @@ npm run dev
 + **請求**
     + `GET /api/v1/user/deletedById` 
 + **回應**
-    + ```json 
+    + 200
+        ```json 
         {
             "code": 200,
             "message": "刪除成功",
@@ -199,7 +202,8 @@ npm run dev
 + **請求**
     + `GET /api/v1/user/updateNameById` 
 + **回應**
-+ ```json 
+    + 200 
+        ```json 
         {
             "code": 200,
             "message": "更新成功",
