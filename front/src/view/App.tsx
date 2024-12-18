@@ -82,7 +82,7 @@ function App() {
 
   async function searchStudent() {
     try {
-      const response = await asyncGet(`${api.findAll}?id=${searchId}`)
+      const response = await asyncGet(`${api.findAll}?id=${setSearchId}`)
       if (response.code == 200 && response.body.length > 0) {
         setSearchedStudent(response.body[0])
       } else {
