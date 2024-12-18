@@ -47,5 +47,8 @@ export class UserController extends Contorller {
         const resp = await this.service.updateNameById(Request.query.id as string,Request.query.name as string);
         Response.status(resp.code).send(resp);
     }
-    
+    public async findOneById(Request: Request, Response:Response){
+        const resp = await this.service.findOneById(Request.query.id as string);
+        Response.status(resp.code).send(resp);
+    }
 }

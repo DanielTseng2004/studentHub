@@ -96,4 +96,22 @@ export async function asyncPut(api: string): Promise<any> {
         console.error("請求錯誤:", error);
         return error;
     }
+
+}
+/**
+ * 異步呼叫單一 api, 用於獲取單一資源
+ * @param api 要呼叫的api
+ * @returns json 結果
+ */
+export async function asyncGetOne(api: string): Promise<any> {
+    try {
+        const res: Response = await fetch(api)
+        try {
+            return await res.json()
+        } catch (error) {
+            return error
+        }
+    } catch (error) {
+        return error
+    }
 }

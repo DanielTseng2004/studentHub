@@ -87,7 +87,7 @@ npm run dev
 
 ## 2.根據 ID 查詢學生資料
 + **請求**
-    + `GET /api/v1/user/findAll?id={request}`   #request值為搜尋目標的id
+    + `GET /api/v1/user/findOne`
 + **回應**
     + 200
         ```json 
@@ -237,7 +237,7 @@ npm run dev
         ```
 
 # 架構圖
-
+![diagram](架構圖.drawio.png)
 
 # 流程圖
 

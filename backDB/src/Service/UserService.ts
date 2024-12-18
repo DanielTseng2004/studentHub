@@ -174,7 +174,7 @@ export class UserService extends Service {
      * @param name 新名字
      * @returns 狀態
      */
-    public async updateNameById(id: string, name:string) {
+    public async updateNameById(id: string, name: string) {
         const resp: resp<DBResp<Student> | undefined> = {
             code: 200,
             message: "",
@@ -198,5 +198,34 @@ export class UserService extends Service {
         }
         return resp;
     }
-    
+    /**
+    * 根據 ID 查找單一學生
+    * @param id 學生ID
+    * @returns 學生資訊或未找到的響應
+    */
+    public async findOneById(id: string): Promise<resp<DBResp<Student> | undefined>> {
+        const resp: resp<DBResp<Student> | undefined> = {
+            code: 200,
+            message: "",
+            body: undefined
+        }
+
+        try {
+            const user = await studentsModel.findById(id);
+
+            if (user) {
+                resp.body = user;
+                resp.message = "user found";
+            } else {
+                resp.code = 404;
+                resp.message = "user not found";
+            }
+        } catch (error) {
+            resp.code = 500;
+            resp.message = "server error";
+            console.error(error);
+        }
+
+        return resp;
+    }
 }

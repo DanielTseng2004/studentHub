@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import '../style/App.css'
-import { asyncGet, asyncDelete, asyncPost, asyncPut } from '../utils/fetch'
+import { asyncGet, asyncDelete, asyncPost, asyncPut, asyncGetOne } from '../utils/fetch'
 import { api } from '../enum/api'
 import { Student } from '../interface/Student'
 import { resp } from '../interface/resp'
@@ -82,9 +82,9 @@ function App() {
 
   async function searchStudent() {
     try {
-      const response = await asyncGet(`${api.findAll}?id=${setSearchId}`)
-      if (response.code == 200 && response.body.length > 0) {
-        setSearchedStudent(response.body[0])
+      const response = await asyncGetOne(`${api.findOne}?id=${searchId}`)
+      if (response.code == 200 && response.body) {
+        setSearchedStudent(response.body)
       } else {
         alert("找不到該學生")
         setSearchedStudent(null)
