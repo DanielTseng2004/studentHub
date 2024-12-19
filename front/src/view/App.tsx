@@ -18,7 +18,7 @@ function App() {
   const [newName, setnewName] = useState("")
   const [searchId, setSearchId] = useState("")
   const [searchedStudent, setSearchedStudent] = useState<Student | null>(null)
-  const [activeTab, setActiveTab] = useState<'列表' | '搜索' | '删除' | '新增' | '更新'>('列表')
+  const [activeTab, setActiveTab] = useState<'列表' | '搜尋' | '刪除' | '新增' | '更新'>('列表')
 
   const apiEndpoint = `${api.delete}?id=${id}`
 
@@ -26,12 +26,12 @@ function App() {
     try {
       const response = await asyncDelete(apiEndpoint)
       if (response.code == 200) {
-        alert("删除成功")
+        alert("刪除成功")
         fetchStudents()
       } else if (response.code == 404) {
-        alert("找不到用户")
+        alert("找不到使用者")
       } else {
-        alert("服务器错误")
+        alert("伺服器錯誤")
       }
     }
     catch (error) {
@@ -53,9 +53,9 @@ function App() {
         alert("新增成功")
         fetchStudents()
       } else if (response.code == 403) {
-        alert("重复的用户账号")
+        alert("重複的使用者帳號")
       } else {
-        alert("服务器错误")
+        alert("伺服器錯誤")
       }
     }
     catch (error) {
@@ -71,9 +71,9 @@ function App() {
         alert("更新成功")
         fetchStudents()
       } else if (response.code == 404) {
-        alert("找不到用户")
+        alert("找不到使用者")
       } else {
-        alert("服务器错误")
+        alert("伺服器錯誤")
       }
     }
     catch (error) {
@@ -87,13 +87,13 @@ function App() {
       if (response.code == 200 && response.body) {
         setSearchedStudent(response.body)
       } else {
-        alert("找不到该学生")
+        alert("找不到該學生")
         setSearchedStudent(null)
       }
     }
     catch (error) {
       console.log(error)
-      alert("查询出错")
+      alert("查詢錯誤")
     }
   }
 
@@ -118,17 +118,17 @@ function App() {
     return (
       <div className='student' key={student._id}>
         <p>ID: {student._id}</p>
-        <p>帐号: {student.userName}</p>
-        <p>座号: {student.sid}</p>
+        <p>帳號: {student.userName}</p>
+        <p>座號: {student.sid}</p>
         <p>姓名: {student.name}</p>
         <p>院系: {student.department}</p>
         <p>年级: {student.grade}</p>
         <p>班级: {student.class}</p>
         <p>Email: {student.email}</p>
-        <p>缺席次数: {student.absences ? student.absences : 0}</p>
+        <p>缺席次數: {student.absences ? student.absences : 0}</p>
       </div>
     )
-  }) : "加载中..."
+  }) : "載入中..."
 
   return (
     <div className="app-container">
@@ -138,31 +138,31 @@ function App() {
           className={`tab-btn ${activeTab === '列表' ? 'active' : ''}`} 
           onClick={() => setActiveTab('列表')}
         >
-          学生列表
+          學生列表
         </button>
         <button 
-          className={`tab-btn ${activeTab === '搜索' ? 'active' : ''}`} 
-          onClick={() => setActiveTab('搜索')}
+          className={`tab-btn ${activeTab === '搜尋' ? 'active' : ''}`} 
+          onClick={() => setActiveTab('搜尋')}
         >
-          搜索学生
+          搜尋學生
         </button>
         <button 
-          className={`tab-btn ${activeTab === '删除' ? 'active' : ''}`} 
-          onClick={() => setActiveTab('删除')}
+          className={`tab-btn ${activeTab === '刪除' ? 'active' : ''}`} 
+          onClick={() => setActiveTab('刪除')}
         >
-          删除学生
+          刪除學生
         </button>
         <button 
           className={`tab-btn ${activeTab === '新增' ? 'active' : ''}`} 
           onClick={() => setActiveTab('新增')}
         >
-          新增学生
+          新增學生
         </button>
         <button 
           className={`tab-btn ${activeTab === '更新' ? 'active' : ''}`} 
           onClick={() => setActiveTab('更新')}
         >
-          更新学生
+          更新學生
         </button>
       </div>
 
@@ -175,17 +175,17 @@ function App() {
           </div>
         )}
 
-        {activeTab === '搜索' && (
+        {activeTab === '搜尋' && (
           <div className="input-section">
             <div className="input-wrapper">
-              <label>按ID搜索学生</label>
+              <label>以ID搜尋學生</label>
               <input
                 type="text"
                 value={searchId}
                 onChange={(e) => setSearchId(e.target.value)}
-                placeholder="输入学生ID"
+                placeholder="輸入學生ID"
               />
-              <button onClick={searchStudent}>搜索</button>
+              <button onClick={searchStudent}>搜尋</button>
             </div>
 
             {searchedStudent && (
@@ -193,14 +193,14 @@ function App() {
                 <div className="container">
                   <div className='student'>
                     <p>ID: {searchedStudent._id}</p>
-                    <p>帐号: {searchedStudent.userName}</p>
-                    <p>座号: {searchedStudent.sid}</p>
+                    <p>帳號: {searchedStudent.userName}</p>
+                    <p>座號: {searchedStudent.sid}</p>
                     <p>姓名: {searchedStudent.name}</p>
                     <p>院系: {searchedStudent.department}</p>
                     <p>年级: {searchedStudent.grade}</p>
                     <p>班级: {searchedStudent.class}</p>
                     <p>Email: {searchedStudent.email}</p>
-                    <p>缺席次数: {searchedStudent.absences ? searchedStudent.absences : 0}</p>
+                    <p>缺席次數: {searchedStudent.absences ? searchedStudent.absences : 0}</p>
                   </div>
                 </div>
               </div>
@@ -208,17 +208,17 @@ function App() {
           </div>
         )}
 
-        {activeTab === '删除' && (
+        {activeTab === '刪除' && (
           <div className="input-section">
             <div className="input-wrapper">
-              <label>按ID删除学生</label>
+              <label>以ID刪除學生</label>
               <input
                 type="text"
                 value={id}
                 onChange={(e) => setid(e.target.value)}
-                placeholder="输入学生ID"
+                placeholder="輸入學生ID"
               />
-              <button onClick={handledelete}>删除</button>
+              <button onClick={handledelete}>刪除</button>
             </div>
           </div>
         )}
@@ -228,12 +228,12 @@ function App() {
             
             <div className="input-wrapper"></div>
             <div className="input-wrapper">
-              <label>帐号</label>
+              <label>帳號</label>
               <input
                 type="text"
                 value={account}
                 onChange={(e) => setaccount(e.target.value)}
-                placeholder="输入帐号"
+                placeholder="輸入帳號"
               />
             </div>
             <div className="input-wrapper"></div>
@@ -244,7 +244,7 @@ function App() {
                 type="text"
                 value={name}
                 onChange={(e) => setname(e.target.value)}
-                placeholder="输入姓名"
+                placeholder="輸入姓名"
               />
             </div>
             <div className="input-wrapper"></div>
@@ -255,7 +255,7 @@ function App() {
                 type="text"
                 value={department}
                 onChange={(e) => setdepartment(e.target.value)}
-                placeholder="输入院系"
+                placeholder="輸入院系"
               />
             </div>
             <div className="input-wrapper"></div>
@@ -266,7 +266,7 @@ function App() {
                 type="text"
                 value={grade}
                 onChange={(e) => setgrade(e.target.value)}
-                placeholder="输入年级"
+                placeholder="輸入年級"
               />
             </div>
             <div className="input-wrapper"></div>
@@ -277,7 +277,7 @@ function App() {
                 type="text"
                 value={Class}
                 onChange={(e) => setclass(e.target.value)}
-                placeholder="输入班级"
+                placeholder="輸入班级"
               />
             </div>
             <div className="input-wrapper"></div>
@@ -288,7 +288,7 @@ function App() {
                 type="text"
                 value={Email}
                 onChange={(e) => setemail(e.target.value)}
-                placeholder="输入Email"
+                placeholder="輸入Email"
               />
             </div>
             <div className="input-wrapper"></div>
@@ -307,7 +307,7 @@ function App() {
                 type="text"
                 value={findid}
                 onChange={(e) => setfindid(e.target.value)}
-                placeholder="输入要更新的ID"
+                placeholder="輸入要更新的ID"
               />
             </div>
             <div className="input-wrapper"></div>
@@ -318,7 +318,7 @@ function App() {
                 type="text"
                 value={newName}
                 onChange={(e) => setnewName(e.target.value)}
-                placeholder="输入新姓名"
+                placeholder="輸入新姓名"
               />
             </div>
             <div className="input-wrapper"></div>
